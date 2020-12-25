@@ -2,6 +2,8 @@
 	"name": "myh5plugin",
 	"displayName": "myh5plugin",
 	"description": "",
+	"repository": "",
+	"publisher": "myh5",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -10,10 +12,28 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:myh5plugin.helloWorld"
+		"onCommand:myh5plugin.helloWorld",
+		"onView:sidebar_group1"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"viewsContainers": {
+            "activitybar": [
+                {
+                    "id":"sidebar_test",
+                    "title": "魔域H5",
+                    "icon": "logo.svg"
+                }
+            ]
+        },
+        "views": {
+            "sidebar_test":[
+                {
+                    "id":"sidebar_group1",
+                    "name":"面板区块名称1"
+                }
+            ]
+        },
 		"commands": [
 			{
 				"command": "myh5plugin.helloWorld",

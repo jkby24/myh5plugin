@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-
+import * as sidebar from './sidebar/group1';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -21,6 +21,19 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+	//注册侧边栏面板的实现
+    const sidebar_test = new sidebar.EntryList();
+	vscode.window.registerTreeDataProvider("sidebar_group1",sidebar_test);
+    //注册命令 
+	vscode.commands.registerCommand("sidebar_group1.openChild",(...args) => {
+		let terminalA = vscode.window.createTerminal({ name: args[0] });
+		terminalA.show(true);
+		terminalA.sendText(args[1]); //输入命令
+        vscode.window.showInformationMessage(`执行任务：${args[0]}`);
+    });
+
+
 }
 
 // this method is called when your extension is deactivated
